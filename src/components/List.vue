@@ -101,16 +101,8 @@
         this.initLoading = true
         this.currentPage = 1
         if (type === 'reSearch') {
-          this.fetchData(encodeURIComponent(this.keyword))
-            .then((res) => {
-              this.bookList = res.data.bookList
-              this.itemsNum = +res.data.itemsNum
-              this.currentPage++
-              this.initLoading = false
-              this.initKeyWord = this.keyword
-              this.searchInResult = false
-              this.isInSearch = false
-            })
+          this.isInSearch = false
+          this.$router.push({name: 'list', params: {keyword: this.keyword}})
         } else {
           axios.get(`/api/result/?search_bar=result&s2_type=${this.filterOpts[this.currentFilter].key}&s2_text=${this.keyword}&title=${this.initKeyWord}&page=${this.currentPage}`)
             .then((res) => {
@@ -132,25 +124,43 @@
       }
     },
     // 该路由被keep-alive，为了使url改变时组件可以刷新
-    beforeRouteEnter (to, from, next) {
-      let keyword = encodeURIComponent(to.params.keyword)
-      next(vm => {
-        if (vm.initKeyWord !== keyword) {
-          vm.currentPage = 1
-          vm.initLoading = true
-          vm.initKeyWord = keyword
-          vm.searchInResult = false
-          vm.keyword = ''
-          vm.fetchData(keyword)
-            .then((res) => {
-              vm.bookList = res.data.bookList
-              vm.itemsNum = +res.data.itemsNum
-              vm.currentPage++
-              vm.initLoading = false
-              vm.isInSearch = false
-            })
-        }
-      })
+//    beforeRouteEnter (to, from, next) {
+//      let keyword = encodeURIComponent(to.params.keyword)
+//      next(vm => {
+//        if (vm.initKeyWord !== keyword) {
+//          vm.currentPage = 1
+//          vm.initLoading = true
+//          vm.initKeyWord = keyword
+//          vm.searchInResult = false
+//          vm.keyword = ''
+//          vm.fetchData(keyword)
+//            .then((res) => {
+//              vm.bookList = res.data.bookList
+//              vm.itemsNum = +res.data.itemsNum
+//              vm.currentPage++
+//              vm.initLoading = false
+//              vm.isInSearch = false
+//            })
+//        }
+//      })
+//    },
+    watch: {
+      $route () {
+        let keyword = encodeURIComponent(to.params.keyword)
+        this.currentPage = 1
+        this.initLoading = true
+        this.initKeyWord = keyword
+        this.searchInResult = false
+        this.keyword = ''
+        this.fetchData(this.initKeyWord)
+          .then(res => {
+            this.bookList = res.data.bookList
+            this.itemsNum = +res.data.itemsNum
+            this.currentPage++
+            this.initLoading = false
+            this.isInSearch = false
+          })
+      }
     }
   }
 </script>
