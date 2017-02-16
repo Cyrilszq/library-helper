@@ -10,9 +10,15 @@
     <router-view v-if="!$route.meta.keepAlive"></router-view>
     <mu-paper class="bottom-nav">
       <mu-bottom-nav :value="bottomNav" @change="handleChange">
-        <mu-bottom-nav-item value="home" title="主页" icon="home"/>
-        <mu-bottom-nav-item value="favorite" title="收藏" icon="favorite"/>
-        <mu-bottom-nav-item value="me" title="个人" icon="person"/>
+        <mu-bottom-nav-item value="home"
+                            title="主页"
+                            icon="home"/>
+        <mu-bottom-nav-item value="favorite"
+                            title="收藏"
+                            icon="favorite"/>
+        <mu-bottom-nav-item value="me"
+                            title="个人"
+                            icon="person"/>
       </mu-bottom-nav>
     </mu-paper>
   </div>

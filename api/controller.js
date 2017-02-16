@@ -24,7 +24,6 @@ exports.getSearchResults = async(ctx, next) => {
     queryString = {},
     result = {};
   queryString = Object.assign(defaultQuery, ctx.query);
-  console.log(ctx.query)
   try {
     let res = await axios.get(url, {
       params: queryString,

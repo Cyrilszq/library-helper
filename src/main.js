@@ -13,8 +13,7 @@ Vue.use(MuseUI)
 Vue.use(VueRouter)
 
 const routes = [
-  {path: '/', name: 'home', component: index},
-  {path: '/list/:keyword', name: 'list', component: List, meta: {keepAlive: true}},
+  {path: '/', name: 'home', component: index, meta: {keepAlive: true}},
   {path: '/detail/:id', name: 'detail', component: Detail},
   {path: '/favorite', name: 'favorite', component: favorite},
   {path: '/me', name: 'me', component: me, meta: {keepAlive: true}}
@@ -36,6 +35,7 @@ const scrollBehavior = (to, from, savedPosition) => {
 }
 
 const router = new VueRouter({
+  mode: 'history',
   routes,
   scrollBehavior
 })
