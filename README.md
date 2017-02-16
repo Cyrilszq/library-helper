@@ -1,21 +1,7 @@
 # library-helper
 
-> A Vue.js project
+## 介绍
+一个便于在手机上访问[学校图书馆网站](http://huiwen.ujs.edu.cn:8080/opac/search.php)的WebApp，在线访问地址:[lib.cyrilszq.cn](http://lib.cyrilszq.cn)(chrome体验最佳，某些浏览器可能无法显示图标字体)
 
-## Build Setup
+前端vue2+vue-router+ES6，后端用node写了个爬虫，包括验证码识别模拟登陆。
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
