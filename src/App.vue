@@ -1,9 +1,9 @@
 <template>
   <div>
-    <mu-appbar title="Library">
-      <mu-icon-button icon='menu' slot="left"/>
-      <mu-icon-button icon='expand_more' slot="right"/>
-    </mu-appbar>
+    <!--<mu-appbar title="Library">-->
+      <!--<mu-icon-button icon='menu' slot="left"/>-->
+      <!--<mu-icon-button icon='expand_more' slot="right"/>-->
+    <!--</mu-appbar>-->
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
