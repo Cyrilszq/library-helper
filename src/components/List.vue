@@ -2,7 +2,7 @@
   <div class="list">
     <span v-if="itemsNum > 0" class="message">共检索到{{itemsNum}}项</span>
     <span v-else class="message">没有检索到您要找的内容</span>
-    <mu-list>
+    <mu-list ref="list">
       <template v-for="(item,index) in bookList">
         <router-link :to="{name:'detail',params:{id:item.libId}}">
           <mu-list-item :title="item.title">
@@ -17,13 +17,14 @@
                        mini
                        class="to-top"
                        @click="toTop"/>
-      <mu-infinite-scroll
+    </mu-list>
+    <mu-infinite-scroll
+        :scroller="scroller"
         :loading="scrollLoading"
         @load="loadMore"
         loadingText="正在加载..."
         style="margin-top: 10px"
       />
-    </mu-list>
   </div>
 </template>
 
@@ -38,8 +39,12 @@
         scroller: null,
       }
     },
+    mounted () {
+      this.scroller = this.$el
+    },
     methods: {
       loadMore () {
+        console.log('load more')
         // 如果没有更多页，则不需要继续加载
         if (Math.ceil(this.itemsNum / 20) < this.searchMsg.currentPage) {
           return
@@ -63,7 +68,7 @@
           })
       },
       toTop () {
-        document.body.scrollTop = 0
+        window.scrollTo(0, 0)
       }
     },
     computed: {
